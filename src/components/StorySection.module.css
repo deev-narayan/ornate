@@ -1,0 +1,219 @@
+/* StorySection.module.css */
+
+.section { background-color: var(--midnight); overflow: hidden; }
+
+/* Intro heading block */
+.intro {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8rem 1.5rem 6rem;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sectionLabelLine {
+  width: 2.5rem;
+  height: 1px;
+  background-color: var(--gold);
+}
+
+.sectionLabelText {
+  font-family: var(--font-display);
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.headingWrap { overflow: hidden; }
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 0.95;
+  color: var(--ivory);
+}
+
+.headingItalic {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* Two-column layout */
+.columns {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .columns { flex-direction: row; }
+}
+
+/* Left sticky panel */
+.textPanel {
+  width: 100%;
+  padding: 4rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .textPanel {
+    width: 42%;
+    height: 100svh;
+    padding: 0 4rem;
+  }
+}
+
+.textInner { max-width: 28rem; }
+
+.bodyText {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--smoke);
+  margin-bottom: 2rem;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.688rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(201,168,76,0.4);
+  padding-bottom: 0.25rem;
+  transition: border-color 0.3s ease;
+  margin-top: 3rem;
+}
+.textLink:hover { border-color: var(--gold); }
+
+.textLinkArrow { transition: transform 0.3s ease; }
+.textLink:hover .textLinkArrow { transform: translateX(0.5rem); }
+
+/* Right scrolling image column */
+.imageColumn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 3rem 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .imageColumn {
+    width: 58%;
+    padding: 25vh 4rem;
+    gap: 3rem;
+  }
+}
+
+.spacer { height: 10vh; display: none; }
+@media (min-width: 1024px) { .spacer { display: block; } }
+
+/* Story card */
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(201,168,76,0.1);
+  background: var(--obsidian);
+}
+
+.card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s ease;
+}
+
+.card:hover img { transform: scale(1.1); }
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--midnight) 0%, rgba(14,11,24,0.6) 50%, transparent 100%);
+  z-index: 1;
+}
+
+.cardTag {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(14,11,24,0.6);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+}
+
+.cardBody {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 2rem 2.5rem;
+  transition: transform 0.7s ease;
+}
+.card:hover .cardBody { transform: translateY(-0.5rem); }
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--ivory);
+  margin-bottom: 0.5rem;
+}
+
+.cardSub {
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.cardDesc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--smoke);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.7s ease, opacity 0.7s ease;
+}
+.card:hover .cardDesc { max-height: 6rem; opacity: 1; }
+
+.cardShimmer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(201,168,76,0.07) 0%, transparent 60%);
+  transition: opacity 0.7s ease;
+}
+.card:hover .cardShimmer { opacity: 1; }

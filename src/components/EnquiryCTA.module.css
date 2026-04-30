@@ -1,0 +1,153 @@
+/* EnquiryCTA.module.css */
+
+.section {
+  background-color: var(--midnight);
+  padding: 8rem 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.bgWord {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+  font-family: var(--font-serif);
+  font-size: 20vw;
+  color: rgba(245,237,214,0.02);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  border-radius: 1.5rem;
+  background-color: var(--obsidian);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .card { padding: 5rem; }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.labelLine { width: 2rem; height: 1px; background: var(--gold); }
+
+.labelText {
+  font-family: var(--font-display);
+  font-size: 0.688rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.headingWrap { overflow: hidden; }
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  color: var(--ivory);
+  margin-bottom: 2rem;
+}
+
+.headingItalic { font-style: italic; color: var(--gold); }
+
+.desc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--smoke);
+  max-width: 30rem;
+  margin: 0 auto 3rem;
+}
+
+@media (min-width: 768px) { .desc { font-size: 1.125rem; } }
+
+.ctas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) { .ctas { flex-direction: row; } }
+
+.btnPrimary {
+  width: 100%;
+  padding: 1rem 2.5rem;
+  background-color: var(--gold);
+  color: var(--midnight);
+  font-family: var(--font-display);
+  font-size: 0.688rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: inline-block;
+}
+.btnPrimary:hover { background-color: var(--gold-light); }
+
+@media (min-width: 640px) { .btnPrimary { width: auto; } }
+
+.btnOutline {
+  width: 100%;
+  padding: 1rem 2.5rem;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 0.688rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  background: transparent;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  text-align: center;
+  display: inline-block;
+}
+.btnOutline:hover { border-color: var(--gold); background-color: rgba(201,168,76,0.1); }
+
+@media (min-width: 640px) { .btnOutline { width: auto; } }
+
+.contactBar {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(201,168,76,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: rgba(184,175,160,0.6);
+}
+
+@media (min-width: 640px) {
+  .contactBar { flex-direction: row; justify-content: center; }
+}
+
+.contactDot { color: rgba(201,168,76,0.3); display: none; }
+@media (min-width: 640px) { .contactDot { display: inline; } }

@@ -1,0 +1,156 @@
+/* =========================================
+   GLOBAL BASE — No Tailwind
+   ========================================= */
+
+/* CSS Variables */
+:root {
+  --midnight:   #0E0B18;
+  --obsidian:   #1A1628;
+  --gold:       #C9A84C;
+  --gold-light: #E8C97E;
+  --ivory:      #F5EDD6;
+  --smoke:      #B8AFA0;
+  --emerald:    #1E6B4F;
+  --jade:       #2A7A5A;
+  --sapphire:   #1B3A6B;
+  --opal:       #B08D8D;
+  --platinum:   #8E9BAD;
+
+  --font-serif:   var(--font-cormorant);
+  --font-sans:    var(--font-dm-sans);
+  --font-display: var(--font-cinzel);
+
+  --grain-x: 0px;
+  --grain-y: 0px;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--midnight);
+  color: var(--ivory);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img, video { display: block; max-width: 100%; }
+ul { list-style: none; }
+address { font-style: normal; }
+
+/* Selection */
+::selection { background-color: var(--gold); color: var(--midnight); }
+
+/* =========================================
+   GRAIN NOISE TEXTURE — scrolls with page
+   ========================================= */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.038;
+  animation: grain-drift 0.5s steps(1) infinite;
+  transform: translate(var(--grain-x), var(--grain-y));
+}
+
+@keyframes grain-drift {
+  0%   { background-position: 0px 0px; }
+  10%  { background-position: -2px -1px; }
+  20%  { background-position: 2px 1px; }
+  30%  { background-position: -1px 2px; }
+  40%  { background-position: 1px -2px; }
+  50%  { background-position: -2px 2px; }
+  60%  { background-position: 2px -1px; }
+  70%  { background-position: -1px -2px; }
+  80%  { background-position: 1px 2px; }
+  90%  { background-position: -2px 1px; }
+  100% { background-position: 2px -2px; }
+}
+
+/* =========================================
+   LENIS SMOOTH SCROLL
+   ========================================= */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* =========================================
+   SHARED UTILITY CLASSES (used across modules)
+   ========================================= */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* =========================================
+   3D ZONE ANIMATIONS — menu tiles
+   ========================================= */
+.gridPerspective {
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+.zone3d {
+  transform-style: preserve-3d;
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.5s ease,
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    filter 0.5s ease;
+}
+
+.zone3dHover {
+  transform: translateZ(70px) translateY(-10px) rotateX(5deg) rotateY(-4deg) !important;
+  box-shadow:
+    -20px 30px 40px -10px rgba(0,0,0,0.95),
+    -8px 12px 24px -4px rgba(201,168,76,0.25),
+    inset 1px 1px 2px rgba(255,255,255,0.08),
+    inset -1px -1px 4px rgba(0,0,0,0.7);
+  border-color: rgba(201,168,76,0.55) !important;
+  background-color: rgba(26,22,40,0.98) !important;
+  z-index: 20;
+}
+
+.zone3dDimmed {
+  transform: translateZ(-30px) rotateX(-1.5deg) rotateY(1.5deg) !important;
+  opacity: 0.18;
+  filter: blur(2px) saturate(0.5);
+  z-index: 1;
+}
+
+.zoneEnter {
+  opacity: 0;
+  animation: zoneFadeIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes zoneFadeIn {
+  from { opacity: 0; filter: blur(8px); transform: translateZ(-80px) translateY(20px); }
+  to   { opacity: 1; filter: blur(0);   transform: translateZ(0) translateY(0); }
+}
+
+.delay1 { animation-delay: 0.08s; }
+.delay2 { animation-delay: 0.16s; }
+.delay3 { animation-delay: 0.24s; }
+.delay4 { animation-delay: 0.32s; }
+.delay5 { animation-delay: 0.40s; }
+.delay6 { animation-delay: 0.48s; }
